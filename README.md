@@ -122,9 +122,8 @@ molecular_biology_app/
 
 ## 👥 Ομάδα Ανάπτυξης
 
-- **[Μέλος 1]**: Team Leader & Backend Developer
-- **[Μέλος 2]**: Frontend Developer & UI/UX Designer  
-- **[Μέλος 3]**: Data Scientist & Algorithm Developer
+- **Αντώνης Κάμτσης**: Δημιουργός Project
+
 
 ## 📖 Οδηγός Χρήσης
 
