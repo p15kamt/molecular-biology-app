@@ -18,9 +18,9 @@ class TeamInfoPage:
     def __init__(self):
         # Πληροφορίες ομάδας - Αυτές πρέπει να ενημερωθούν με τα πραγματικά στοιχεία
         self.team_info = {
-            "Όνομα Ομάδας": "BioinfoTeam 2025",
-            "Πανεπιστήμιο": "Πανεπιστήμιο [Όνομα]",
-            "Τμήμα": "Βιοπληροφορική",
+            "Όνομα Ομάδας": "MolecularBioApp 2025",
+            "Πανεπιστήμιο": "Ιόνιο Πανεπιστήμιο",
+            "Τμήμα": "Πληροφορικής",
             "Ακαδημαϊκό Έτος": "2024-2025",
             "Μάθημα": "Τεχνολογία Λογισμικού",
             "Ημερομηνία Υποβολής": "Αύγουστος 2025"
@@ -29,39 +29,15 @@ class TeamInfoPage:
         # Μέλη ομάδας - Αυτά πρέπει να ενημερωθούν με τα πραγματικά στοιχεία
         self.team_members = [
             {
-                "Όνομα": "[Μέλος 1]",
-                "ΑΜ": "XXXX",
-                "Email": "member1@university.edu",
-                "Ρόλος": "Team Leader & Backend Developer", 
+                "Όνομα": "Αντώνης Κάμτσης",
+                "ΑΜ": "Π2015086",
+                "Email": "p15kamt@ionio.gr",
+                "Ρόλος": "Δημιουργός Project", 
                 "Συνεισφορά": [
-                    "Σχεδιασμός αρχιτεκτονικής εφαρμογής",
-                    "Υλοποίηση data preprocessing module",
-                    "Ενσωμάτωση scanpy pipeline",
-                    "Docker configuration"
-                ]
-            },
-            {
-                "Όνομα": "[Μέλος 2]", 
-                "ΑΜ": "YYYY",
-                "Email": "member2@university.edu",
-                "Ρόλος": "Frontend Developer & UI/UX Designer",
-                "Συνεισφορά": [
-                    "Σχεδιασμός UI/UX της εφαρμογής",
-                    "Υλοποίηση visualization modules",
-                    "Streamlit interface development",
-                    "CSS styling και responsive design"
-                ]
-            },
-            {
-                "Όνομα": "[Μέλος 3]",
-                "ΑΜ": "ZZZZ", 
-                "Email": "member3@university.edu",
-                "Ρόλος": "Data Scientist & Algorithm Developer",
-                "Συνεισφορά": [
-                    "Υλοποίηση machine learning algorithms",
-                    "DEG analysis module",
-                    "Cell annotation με decoupler",
-                    "Testing και validation"
+                    "Υλοποίηση και παραμετροποίηση εφαρμογής",
+                    "Dockerization",
+                    "Διαχείριση αποθετηρίου GitHub",
+                    "Συγγραφή report"
                 ]
             }
         ]
@@ -256,7 +232,7 @@ class TeamInfoPage:
         with col2:
             st.markdown("##### 🔗 Χρήσιμοι Σύνδεσμοι")
             st.markdown("""
-            - [GitHub Repository](https://github.com/[username]/molecular-biology-app)
+            - [GitHub Repository](https://github.com/p15kamt/molecular-biology-app)
             - [Streamlit Documentation](https://docs.streamlit.io/)
             - [Scanpy Documentation](https://scanpy.readthedocs.io/)
             - [Plotly Documentation](https://plotly.com/python/)
