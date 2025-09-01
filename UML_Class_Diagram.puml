@@ -1,0 +1,163 @@
+@startuml MolecularBiologyApp_ClassDiagram
+
+!theme plain
+skinparam backgroundColor white
+skinparam classBackgroundColor lightblue
+skinparam classBorderColor darkblue
+
+package "Molecular Biology Application" {
+
+    class MolecularBiologyApp {
+        +main()
+        +render_sidebar()
+        +display_memory_monitor()
+        +render_home_page()
+    }
+
+    class AdvancedMemoryManager {
+        -memory_threshold: float
+        -emergency_threshold: float
+        -chunk_size: int
+        +get_system_memory_info(): Dict
+        +progressive_qc_calculation(adata): AnnData
+        +_vectorized_qc_calculation(adata): AnnData
+        +cleanup_session_memory(): void
+        +emergency_memory_cleanup(): bool
+        +adaptive_chunk_processing(adata, func): List
+        +estimate_memory_usage(adata): float
+        +optimize_adata_for_memory(adata): AnnData
+    }
+
+    class DataPreprocessingPage {
+        -adata: AnnData
+        -uploaded_files: List
+        -original_adata: AnnData
+        +render(): void
+        +_render_file_upload(): void
+        +_load_data(file): bool
+        +_render_quality_control(): void
+        +_calculate_qc_metrics(): void
+        +_render_preprocessing_section(): void
+        +_apply_preprocessing(min_genes, max_genes, max_counts, max_mt, min_cells): void
+        +_save_processed_data(adata): void
+        +_display_data_summary(): void
+    }
+
+    class DataIntegrationPageComplete {
+        -datasets: Dict
+        -integration_method: str
+        -integrated_data: AnnData
+        -intersection_only: bool
+        +render(): void
+        +render_setup(): void
+        +render_execution(): void
+        +perform_integration(): AnnData
+        +perform_scanorama_integration(): AnnData
+        +_memory_efficient_scanorama(): AnnData
+        +perform_simple_concatenation(): AnnData
+        +get_common_genes(): List
+        +render_results(): void
+    }
+
+    class DEGAnalysisPageComplete {
+        -adata: AnnData
+        -comparison_column: str
+        -comparison_groups: Dict
+        -selected_method: str
+        -correction_method: str
+        -max_genes: int
+        -filter_highly_variable: bool
+        -logfc_threshold: float
+        -deg_results: DataFrame
+        +render(): void
+        +render_data_selection(): void
+        +render_analysis_parameters(): void
+        +render_deg_execution(): void
+        +perform_deg_analysis(): DataFrame
+        +prepare_data_for_analysis(): AnnData
+        +perform_one_vs_all_analysis(adata): DataFrame
+        +perform_pairwise_analysis(adata): DataFrame
+        +apply_multiple_testing_correction(pvals): ndarray
+        +estimate_analysis_time(): float
+        +render_results_visualization(): void
+    }
+
+    class VisualizationPageComplete {
+        -adata: AnnData
+        -plot_data: AnnData
+        +render(): void
+        +render_data_setup(): void
+        +render_dimensionality_reduction(): void
+        +render_gene_expression(): void
+        +render_quality_control(): void
+        +render_advanced_plots(): void
+        +create_subsample(n_cells): AnnData
+        +_prepare_data_for_visualization(adata, max_cells, max_genes): AnnData
+        +create_embedding_plot(basis, color_by, method): void
+        +create_gene_expression_plot(genes): void
+        +create_violin_plot(features): void
+    }
+
+    class CellAnnotationPageComplete {
+        -adata: AnnData
+        -marker_genes: Dict
+        -annotation_results: Dict
+        -cell_types: List
+        +render(): void
+        +render_data_clustering(): void
+        +render_marker_genes(): void
+        +render_automated_annotation(): void
+        +render_manual_curation(): void
+        +render_results_visualization(): void
+        +perform_clustering(): void
+        +render_builtin_markers(): void
+        +render_custom_markers(): void
+        +perform_score_based_annotation(threshold, min_genes): List
+        +perform_clustering_based_annotation(): List
+        +perform_ml_annotation(): List
+    }
+
+    class SessionStateManager <<utility>> {
+        +get_preprocessed_data(): AnnData
+        +set_preprocessed_data(data): void
+        +get_integrated_data(): AnnData
+        +set_integrated_data(data): void
+        +get_marker_genes(): Dict
+        +set_marker_genes(markers): void
+        +clear_session_data(): void
+    }
+
+    ' Relationships
+    MolecularBiologyApp --> DataPreprocessingPage : creates
+    MolecularBiologyApp --> DataIntegrationPageComplete : creates
+    MolecularBiologyApp --> DEGAnalysisPageComplete : creates
+    MolecularBiologyApp --> VisualizationPageComplete : creates
+    MolecularBiologyApp --> CellAnnotationPageComplete : creates
+    MolecularBiologyApp --> AdvancedMemoryManager : uses
+
+    DataPreprocessingPage --> AdvancedMemoryManager : uses
+    DataIntegrationPageComplete --> AdvancedMemoryManager : uses
+    DEGAnalysisPageComplete --> AdvancedMemoryManager : uses
+    VisualizationPageComplete --> AdvancedMemoryManager : uses
+    CellAnnotationPageComplete --> AdvancedMemoryManager : uses
+
+    DataPreprocessingPage --> SessionStateManager : uses
+    DataIntegrationPageComplete --> SessionStateManager : uses
+    DEGAnalysisPageComplete --> SessionStateManager : uses
+    VisualizationPageComplete --> SessionStateManager : uses
+    CellAnnotationPageComplete --> SessionStateManager : uses
+
+    note top of AdvancedMemoryManager
+        Χειρίζεται βελτιστοποίηση μνήμης
+        με προσαρμοστική κατάτμηση και
+        παρακολούθηση σε πραγματικό χρόνο
+    end note
+
+    note bottom of SessionStateManager
+        Διαχειρίζεται τη διατήρηση δεδομένων
+        μεταξύ σελίδων Streamlit
+        χρησιμοποιώντας st.session_state
+    end note
+}
+
+@enduml

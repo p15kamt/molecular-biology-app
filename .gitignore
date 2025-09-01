@@ -1,0 +1,32 @@
+# Temporary files
+temp_files/
+*.tmp
+*.temp
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Data files (optional - uncomment if you don't want to track data)
+# data/
+# *.h5ad
+# *.csv
+# *.xlsx
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Streamlit
+.streamlit/secrets.toml

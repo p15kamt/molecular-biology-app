@@ -1,0 +1,157 @@
+@startuml MolecularBiologyApp_UseCases
+
+!theme plain
+skinparam backgroundColor white
+skinparam usecaseBackgroundColor lightgreen
+skinparam actorBackgroundColor lightblue
+
+left to right direction
+
+actor "Ερευνητής/Χρήστης" as User
+actor "Διαχειριστής Μνήμης" as MemoryManager
+actor "Επιστημονικές Βιβλιοθήκες" as ScientificLibs
+actor "Σύστημα Αρχείων" as FileSystem
+
+package "Molecular Biology Analysis Platform" {
+
+    ' Main Use Cases
+    usecase "Ανέβασμα & Προεπεξεργασία\nΔεδομένων" as UC1
+    usecase "Ενοποίηση Πολλαπλών\nDatasets" as UC2
+    usecase "Εκτέλεση Ανάλυσης\nΔιαφορικής Έκφρασης" as UC3
+    usecase "Δημιουργία\nΟπτικοποιήσεων" as UC4
+    usecase "Σχολιασμός\nΤύπων Κυττάρων" as UC5
+    usecase "Παρακολούθηση\nΑπόδοσης Συστήματος" as UC6
+
+    ' Data Preprocessing Sub-Use Cases
+    package "Προεπεξεργασία Δεδομένων" {
+        usecase "Ανέβασμα scRNA-seq\nΑρχείων" as UC1_1
+        usecase "Διαμόρφωση Παραμέτρων\nQC" as UC1_2
+        usecase "Εφαρμογή Φιλτραρίσματος\nΚυττάρων/Γονιδίων" as UC1_3
+        usecase "Κανονικοποίηση &\nLog Μετασχηματισμός" as UC1_4
+        usecase "Αποθήκευση\nΠροεπεξεργασμένων Δεδομένων" as UC1_5
+    }
+
+    ' Data Integration Sub-Use Cases
+    package "Ενοποίηση Δεδομένων" {
+        usecase "Φόρτωση Πολλαπλών\nDatasets" as UC2_1
+        usecase "Επιλογή Μεθόδου\nΕνοποίησης" as UC2_2
+        usecase "Διαμόρφωση Παραμέτρων\nΕνοποίησης" as UC2_3
+        usecase "Εκτέλεση\nΕνοποίησης" as UC2_4
+        usecase "Επικύρωση Αποτελεσμάτων\nΕνοποίησης" as UC2_5
+    }
+
+    ' DEG Analysis Sub-Use Cases
+    package "Ανάλυση Διαφορικής Έκφρασης" {
+        usecase "Επιλογή Ομάδων\nΣύγκρισης" as UC3_1
+        usecase "Επιλογή Στατιστικής\nΜεθόδου" as UC3_2
+        usecase "Διαμόρφωση Παραμέτρων\nΑνάλυσης" as UC3_3
+        usecase "Εκτέλεση\nDEG Ανάλυσης" as UC3_4
+        usecase "Εφαρμογή Διόρθωσης\nΠολλαπλών Δοκιμών" as UC3_5
+        usecase "Εξαγωγή\nΑποτελεσμάτων" as UC3_6
+    }
+
+    ' Visualization Sub-Use Cases
+    package "Οπτικοποίηση" {
+        usecase "Δημιουργία PCA/UMAP\nPlots" as UC4_1
+        usecase "Γραφήματα Γονιδιακής\nΈκφρασης" as UC4_2
+        usecase "Γραφήματα Ελέγχου\nΠοιότητας" as UC4_3
+        usecase "Προσαρμογή Παραμέτρων\nΓραφημάτων" as UC4_4
+        usecase "Εξαγωγή Υψηλής\nΠοιότητας Εικόνων" as UC4_5
+    }
+
+    ' Cell Annotation Sub-Use Cases
+    package "Σχολιασμός Κυττάρων" {
+        usecase "Εκτέλεση Ανάλυσης\nClustering" as UC5_1
+        usecase "Φόρτωση/Ορισμός\nMarker Genes" as UC5_2
+        usecase "Αυτοματοποιημένη Πρόβλεψη\nΤύπων Κυττάρων" as UC5_3
+        usecase "Χειροκίνητος Σχολιασμός\nΤύπων Κυττάρων" as UC5_4
+        usecase "Επικύρωση\nΣχολιασμών" as UC5_5
+    }
+
+    ' Performance Monitoring Sub-Use Cases
+    package "Παρακολούθηση Απόδοσης" {
+        usecase "Παρακολούθηση\nΧρήσης Μνήμης" as UC6_1
+        usecase "Παρακολούθηση\nΧρόνου Επεξεργασίας" as UC6_2
+        usecase "Έκτακτος Καθαρισμός\nΜνήμης" as UC6_3
+        usecase "Βελτιστοποίηση\nΠαραμέτρων" as UC6_4
+    }
+}
+
+' User interactions
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+User --> UC5
+User --> UC6
+
+' Sub-use case relationships
+UC1 --> UC1_1
+UC1 --> UC1_2
+UC1 --> UC1_3
+UC1 --> UC1_4
+UC1 --> UC1_5
+
+UC2 --> UC2_1
+UC2 --> UC2_2
+UC2 --> UC2_3
+UC2 --> UC2_4
+UC2 --> UC2_5
+
+UC3 --> UC3_1
+UC3 --> UC3_2
+UC3 --> UC3_3
+UC3 --> UC3_4
+UC3 --> UC3_5
+UC3 --> UC3_6
+
+UC4 --> UC4_1
+UC4 --> UC4_2
+UC4 --> UC4_3
+UC4 --> UC4_4
+UC4 --> UC4_5
+
+UC5 --> UC5_1
+UC5 --> UC5_2
+UC5 --> UC5_3
+UC5 --> UC5_4
+UC5 --> UC5_5
+
+UC6 --> UC6_1
+UC6 --> UC6_2
+UC6 --> UC6_3
+UC6 --> UC6_4
+
+' System interactions
+UC1 --> MemoryManager : monitors
+UC2 --> MemoryManager : monitors
+UC3 --> MemoryManager : monitors
+UC4 --> MemoryManager : monitors
+UC5 --> MemoryManager : monitors
+
+UC1 --> ScientificLibs : uses
+UC2 --> ScientificLibs : uses
+UC3 --> ScientificLibs : uses
+UC4 --> ScientificLibs : uses
+UC5 --> ScientificLibs : uses
+
+UC1_5 --> FileSystem : saves to
+UC3_6 --> FileSystem : exports to
+UC4_5 --> FileSystem : exports to
+
+MemoryManager --> UC6 : triggers
+
+note top of User
+    Ερευνητής που εκτελεί
+    αναλύσεις scRNA-seq
+    χωρίς εκτεταμένη γνώση
+    προγραμματισμού
+end note
+
+note bottom of MemoryManager
+    Αυτόματη παρακολούθηση
+    και βελτιστοποίηση
+    χρήσης μνήμης
+end note
+
+@enduml

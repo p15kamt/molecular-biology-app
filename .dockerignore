@@ -1,0 +1,65 @@
+# Docker ignore file για Molecular Biology App
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Temporary files
+*.tmp
+*.temp
+temp_files/*
+
+# Large data files (προαιρετικά - αν δεν θέλουμε να τα συμπεριλάβουμε)
+# data/*.h5ad
+# data/*.csv
+
+# Logs
+*.log
+logs/
+
+# Documentation drafts
+*.md.backup
+drafts/
+
+# Test files
+test_*.py
+*_test.py

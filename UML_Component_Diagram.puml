@@ -1,0 +1,108 @@
+@startuml MolecularBiologyApp_Components
+
+!theme plain
+skinparam backgroundColor white
+skinparam componentBackgroundColor lightcyan
+skinparam packageBackgroundColor lightyellow
+
+package "Streamlit Frontend" {
+    component [Main App Controller] as MainApp
+    component [Navigation Sidebar] as Sidebar
+    component [Memory Monitor Widget] as MemWidget
+}
+
+package "Core Analysis Modules" {
+    component [Data Preprocessing] as Preprocessing
+    component [Data Integration] as Integration  
+    component [DEG Analysis] as DEGAnalysis
+    component [Visualization] as Visualization
+    component [Cell Annotation] as CellAnnotation
+}
+
+package "Utility Services" {
+    component [Advanced Memory Manager] as MemoryManager
+    component [Session State Manager] as SessionManager
+    component [Memory Utils] as MemoryUtils
+}
+
+package "Scientific Computing Libraries" {
+    component [Scanpy] as Scanpy
+    component [NumPy/SciPy] as NumPy
+    component [Pandas] as Pandas
+    component [Plotly] as Plotly
+    component [Scikit-learn] as Sklearn
+}
+
+package "Data Storage" {
+    database "Session State" as SessionState
+    database "Temporary Files" as TempFiles
+    database "User Data" as UserData
+}
+
+' Frontend connections
+MainApp --> Sidebar
+MainApp --> MemWidget
+MainApp --> Preprocessing
+MainApp --> Integration
+MainApp --> DEGAnalysis
+MainApp --> Visualization
+MainApp --> CellAnnotation
+
+' Module connections to utilities
+Preprocessing --> MemoryManager
+Integration --> MemoryManager
+DEGAnalysis --> MemoryManager
+Visualization --> MemoryManager
+CellAnnotation --> MemoryManager
+
+Preprocessing --> SessionManager
+Integration --> SessionManager
+DEGAnalysis --> SessionManager
+Visualization --> SessionManager
+CellAnnotation --> SessionManager
+
+MemoryManager --> MemoryUtils
+
+' Scientific library connections
+Preprocessing --> Scanpy
+Preprocessing --> NumPy
+Preprocessing --> Pandas
+
+Integration --> Scanpy
+Integration --> NumPy
+
+DEGAnalysis --> Scanpy
+DEGAnalysis --> NumPy
+DEGAnalysis --> Sklearn
+
+Visualization --> Plotly
+Visualization --> NumPy
+
+CellAnnotation --> Scanpy
+CellAnnotation --> Sklearn
+
+' Data connections
+SessionManager --> SessionState
+Preprocessing --> TempFiles
+Integration --> TempFiles
+DEGAnalysis --> TempFiles
+
+UserData --> Preprocessing
+TempFiles --> Integration
+SessionState --> DEGAnalysis
+SessionState --> Visualization
+SessionState --> CellAnnotation
+
+note top of MemoryManager
+    Κεντρική διαχείριση μνήμης
+    με real-time monitoring
+    και adaptive optimization
+end note
+
+note bottom of SessionState
+    Διατήρηση δεδομένων
+    μεταξύ σελίδων της
+    εφαρμογής Streamlit
+end note
+
+@enduml
